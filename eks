@@ -1,0 +1,43 @@
+AWS account
+
+Install these tools on your system:
+
+AWS CLI → aws configure (set access + region)
+
+kubectl (Kubernetes CLI)
+
+eksctl (EKS CLI helper)
+
+Install eksctl
+----------------------
+curl -sLO "https://github.com/eksctl-io/eksctl/r... -s)_amd64.tar.gz"
+tar -xzf eksctl_$(uname -s)_amd64.tar.gz
+sudo mv eksctl /usr/local/bin
+
+Install kubectl
+------------------------
+sudo apt-get update
+sudo apt-get install -y curl
+curl -o kubectl https://s3.us-west-2.amazonaws.com/am...
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin
+kubectl version --client
+
+Step 1: Create an EKS Cluster
+eksctl create cluster \
+  --name demo-cluster \
+  --version 1.29 \
+  --region ap-south-1 \
+  --nodegroup-name demo-nodes \
+  --node-type t3.medium \
+  --nodes 2 \
+  --managed
+
+Update kubeconfig
+-------------------
+aws eks --region ap-south-1 update-kubeconfig --name demo-cluster
+
+
+Verify Cluster
+----------------
+kubectl get nodes
