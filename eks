@@ -41,3 +41,9 @@ aws eks --region ap-south-1 update-kubeconfig --name demo-cluster
 Verify Cluster
 ----------------
 kubectl get nodes
+
+
+
+
+eks using terraform:
+https://www.learnitguide.net/2025/07/create-eks-cluster-on-aws-terraform.html
